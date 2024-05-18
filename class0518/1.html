@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>型別和物件複習+創建vue實體</title>
 </head>
 <body>
-    
+    <div id="app">
+        <p>++++++++++++++{{name}}++++++++++</p>
+        <p>{{name}},要去聽{{ musice[0]}}</p> <!-- 陣列-->
+        <p>{{name}},會用{{ skill['f2e'][0]}}</p> <!-- 物件-->
+        <h3 v-text="skill['f2e'][0]"></h3>
+
+        <p>{{live?'活著':'死亡'}}</p> <!-- 三元運算  是否活著 true->活著-->
+       <h3 v-text="`${ musice[0]}音樂`"></h3>  <!-- 很少用-->
+        <h3 v-text="age"></h3>
+        <h3 v-text="live"></h3>
+        <h3 v-html="content"></h3><!-- 很少用 容易有資安問題-->
+    </div>
+    <script src="https://unpkg.com/vue@3.4.27/dist/vue.global.js"></script>
+    <script>
+        // console.log(Vue)
+      const app = Vue.createApp({
+        data() {
+            return {
+                name:'123',
+                age:37,
+                live:false,
+                musice:['aimar','one ok rock','mamamoo'],
+                skill:{//物件
+                    f2e:['vue','react'],
+                    b2e:['php','nodejs','ASP.net']
+                },
+                gender:null,
+                // content:'<div style="color:red">逼逼波</div>'
+                content:`<div style="color:red">
+                    逼逼波 <br>
+                    伊伊呀
+                    </div>`
+            }
+        },
+      })
+      app.mount('#app') //對應上面<div id="app">
+    </script>
 </body>
 </html>
