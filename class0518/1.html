@@ -12,11 +12,12 @@
         <p>{{name}},會用{{ skill['f2e'][0]}}</p> <!-- 物件-->
         <h3 v-text="skill['f2e'][0]"></h3>
 
-        <p>{{live?'活著':'死亡'}}</p> <!-- 三元運算  是否活著 true->活著-->
+        <p>{{live?'活著':'死亡'}}</p> <!-- 三元運算  是否活著 true->活著 false->死亡 -->
         <h3 v-text="`${ musice[0]}音樂`"></h3>  <!-- 很少用-->
         <h3 v-text="age"></h3>
         <h3 v-text="live"></h3>
         <h3 v-html="content"></h3><!-- 很少用 容易有資安問題-->
+        
     </div>
     <script src="https://unpkg.com/vue@3.4.27/dist/vue.global.js"></script>
     <script>
@@ -37,11 +38,13 @@
                 content:`<div style="color:red">
                     逼逼波 <br>
                     伊伊呀
-                    </div>`
+                    </div>`,
+                    image:` <img src="../image/flows2.png" alt=""> `
             }
         },
       })
       app.mount('#app') //對應上面<div id="app">
     </script>
+    <img src="../image/flows2.png" alt="">
 </body>
 </html>
