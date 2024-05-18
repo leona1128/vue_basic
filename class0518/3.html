@@ -20,7 +20,7 @@
     </div>
     <script src="https://unpkg.com/vue@3.4.27/dist/vue.global.js"></script>
     <script>
-
+//換算美金是錯誤的
         Vue.createApp({
             data() {
                 return {
@@ -43,11 +43,14 @@
                 },
                 parse(){
                     console.log('qweqw');
-                    return this.price*this.res
+                    this.total= this.price*this.res
+                    return this.total//錯誤寫法
+                    //半正確
+                    // return this.price*this.res
 
                 },
                 parseDaollar(){
-                    return this.res*30 
+                    return this.total/30 
                 }
             },
         }).mount("#app")
