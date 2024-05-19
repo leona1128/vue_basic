@@ -53,14 +53,13 @@
                     // return this.total/30 
                 }
             },
-            computed: {
+            computed: {//上面呼叫不用(),要計算時就需要用到
                 parse(){
                     return this.price*this.res  
                 },
                 dollar(){
                     return this.parse/30
                 }
-              
             },
         }).mount("#app")
     </script>
