@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="subtraction">-</button>
+        {{res}}
+        <button @click="add">+</button>
+        <br>
+       總價: {{parse()}}
+       美金: {{parseDaollar()}}
+
+
+    </div>
+    <script src="https://unpkg.com/vue@3.4.27/dist/vue.global.js"></script>
+    <script>
+//換算美金是錯誤的
+        Vue.createApp({
+            data() {
+                return {
+                    res: 0,
+                    count: 1,
+                    total:0,
+                    price:500,
+                }
+            },
+            methods: {//專門放funtion
+                add() {
+                    //    this.res = this.res+1
+                    if (this.res >= 5) return
+                    this.res += this.count
+                },
+                subtraction() {
+                    // this.res = this.res-1
+                    if (this.res == 0) return//結果等於0就不要繼續
+                    this.res -= this.count
+                },
+                parse(){
+                    console.log('qweqw');
+                    this.total= this.price*this.res
+                    return this.total//錯誤寫法
+                    //半正確
+                    // return this.price*this.res
+
+                },
+                parseDaollar(){
+                    return this.total/30 
+                }
+            },
+        }).mount("#app")
+    </script>
+</body>
+
+</html>
