@@ -64,6 +64,10 @@
             },
             methods: {
                 add() {
+                    
+                    if(this.i>this.color.length){
+                        this.i=0;
+                    }
                     return this.i++;
 
                 },
