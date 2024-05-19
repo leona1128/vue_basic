@@ -13,7 +13,7 @@
         {{res}}
         <button @click="add">+</button>
         <br>
-       總價: {{parse()}}
+       總價: {{parse}}
        美金: {{ dollar}}
 
 
@@ -41,22 +41,26 @@
                     if (this.res == 0) return//結果等於0就不要繼續
                     this.res -= this.count
                 },
-                parse(){
-                    // console.log('qweqw');
-                    // this.total= this.price*this.res
-                    // return this.total//錯誤寫法
-                    // //半正確
-                    return this.price*this.res
+                // parse(){
+                //     // console.log('qweqw');
+                //     // this.total= this.price*this.res
+                //     // return this.total//錯誤寫法
+                //     // //半正確
+                //     return this.price*this.res
 
-                },
+                // },
                 parseDaollar(){
                     // return this.total/30 
                 }
             },
             computed: {
+                parse(){
+                    return this.price*this.res  
+                },
                 dollar(){
-                    return (this.price*this.res/30)
+                    return this.parse/30
                 }
+              
             },
         }).mount("#app")
     </script>
