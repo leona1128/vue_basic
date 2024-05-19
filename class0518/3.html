@@ -14,7 +14,7 @@
         <button @click="add">+</button>
         <br>
        總價: {{parse()}}
-       美金: {{parseDaollar()}}
+       美金: {{ dollar}}
 
 
     </div>
@@ -26,7 +26,7 @@
                 return {
                     res: 0,
                     count: 1,
-                    total:0,
+                    // total:0,
                     price:500,
                 }
             },
@@ -42,15 +42,20 @@
                     this.res -= this.count
                 },
                 parse(){
-                    console.log('qweqw');
-                    this.total= this.price*this.res
-                    return this.total//錯誤寫法
-                    //半正確
-                    // return this.price*this.res
+                    // console.log('qweqw');
+                    // this.total= this.price*this.res
+                    // return this.total//錯誤寫法
+                    // //半正確
+                    return this.price*this.res
 
                 },
                 parseDaollar(){
-                    return this.total/30 
+                    // return this.total/30 
+                }
+            },
+            computed: {
+                dollar(){
+                    return (this.price*this.res/30)
                 }
             },
         }).mount("#app")
