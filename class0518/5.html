@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 5rem;
+            padding: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <img src="../image/11.jpg" alt="">
+        <!-- <img :src="imgurl" :style=" width: 7rem;" alt=""> -->
+        <img :src="imgurl" :style="{
+            width: `${widths}rem`,
+            backgroundColor: bg,
+            padding:'10px'
+            //'background-color': bg;
+           
+
+        }" alt="">
+        <button @click="addw">加大圖片</button>
+
+    </div>
+    <script src="https://unpkg.com/vue@3.4.27/dist/vue.global.js"></script>
+    <script>
+
+        Vue.createApp({
+            data() {
+                return {
+                    imgurl: "../image/12.jpg",
+                    bg: '#666',
+                    widths: 5,
+
+                }
+            },
+            methods: {
+                addw() {
+                    if (this.widths >= 10) {
+                        this.widths = 2
+                    }
+                    this.widths += 1;
+                    this.bg = `#${this.widths}${this.widths}${this.widths}`
+
+                }
+            },
+        }).mount("#app")
+    </script>
+</body>
+
+</html>
