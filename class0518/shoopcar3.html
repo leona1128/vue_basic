@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .shopping-cart {
+            background-color: azure;
+            width: 40%;
+            display: none;
+        }
+
+        .cart {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 60%;
+        }
+
+        .card-image {
+            width: 100px;
+        }
+
+        .card-image img {
+            width: 100%;
+        }
+
+        .card-pic {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <p v-for="n in 10"> for迴圈
+            {{n}}
+        </p> -->
+        <ul class="cart-list">
+            <h1>商品列表</h1>
+            <li class="cart" v-for="(cartItem,cartIndex) in cartList" :key="cartItem.id">
+                <div class="card-image">
+                    <img :src="cartItem['img']" alt="">
+                </div>
+                <div class="card-name">
+                    <p>{{cartItem['title']}}</p>
+                    <p>{{cartItem['subTitle']}}</p>
+
+                </div>
+                <div class="card-num">
+                    <button @click="add(cartIndex)">+</button>
+                    {{cartItem['count']}}
+                    <button @click="reduce(cartIndex)">-</button>
+                </div>
+                <div class="card-pic">
+                    <p>${{cartItem['price']}}</p>
+                </div>
+                <button>x</button>
+
+
+
+            </li>
+            <!-- <li class="cart">
+            <div class="card-image">
+                <img :src="cartList[1]['img']" alt="">
+            </div>
+            <div class="card-name">
+                <p>{{cartList[1]['title']}}</p>
+                <p>{{cartList[1]['subTitle']}}</p>
+ 
+            </div>
+            <div class="card-num">
+                <button @click="add(1)">+</button>
+                {{cartList[1]['count']}}
+                <button @click="reduce(1)">-</button>
+            </div>
+            <div class="card-pic">
+                <p>${{cartList[1]['price']}}</p>
+            </div>
+            <button>x</button>
+
+        </li> -->
+            <div class="shopping-cart">
+                <ul>
+                    <li>
+
+                    </li>
+
+                </ul>
+                <div class="delete">x</div>
+            </div>
+
+        </ul>
+        <div class="total">
+            {{total1}}
+        </div>
+
+
+
+    </div>
+    <script src="https://unpkg.com/vue@3.4.27/dist/vue.global.js"></script>
+    <script>
+
+        Vue.createApp({
+            data() {
+                return {
+                    cartList: [
+                        {
+                            id: 1,
+                            title: 'bbb',
+                            subTitle: 'ccc',
+                            price: 100,
+                            count: 1,
+                            img: '../image/21.jpg'
+                        },
+                        {
+                            id: 2,
+                            title: 'aa',
+                            subTitle: 'rr',
+                            price: 100,
+                            count: 2,
+                            img: '../image/23.jpg'
+                        },
+
+                    ]
+
+                }
+            },
+            methods: {
+                add(index) {
+                    this.cartList[index]['count'] += 1
+                },
+                reduce(index) {
+                    if (this.cartList[index]['count'] == 0) return
+                    this.cartList[index]['count'] -= 1
+                },
+            },
+            computed: {
+                total1() {
+                    //想法
+                    // const prod1 = this.cartList[0]['price']*this.cartList[0]['count']
+                    // const prod2 = this.cartList[1]['price']*this.cartList[1]['count']
+                    // return prod1 + prod2
+                    
+                    // return this.cartList.reduce((total, item)=>{
+                    //     return total + item.price * item.count
+                    // },0)
+
+                    let price = 0
+                    // this.cartList.forEach(item => {
+                    //     price += item.price * item.count
+                    // });
+                    for (let index = 0; index < this.cartList.length; index++) {
+                        price += this.cartList[index]['price'] * this.cartList[index]['count']
+                    }
+                    return price
+                }
+            },
+        }).mount("#app")
+    </script>
+</body>
+
+</html>
