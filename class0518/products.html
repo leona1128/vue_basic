@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 200px;
+        }
+        p{
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+           <!-- 變數(印出來的)    陣列數字物件              -->
+           <!-- []值   [1.2.3.4]              for a in [1,2,3,4]   a=1,2,3,4 -->
+<div v-for="prodItem in products" :key="prodItem.id">
+    <img :src="prodItem.image" alt="">
+    <h6>{{prodItem['title']}}</h6>
+    <p>
+        <!-- {{prodItem?.rating}} 如果prodItem在,那麼就繼續 -->
+        <!-- {{prodItem?.rating?.rate}} ({{prodItem?.rating?.count}}) -->
+        <!-- {{parseInt(prodItem?.rating?.rate)}} -->
+        <span v-for="star in parseInt(prodItem?.rating?.rate)">✩</span>
+        ({{prodItem?.rating?.count}})
+        <!-- <span>✩</span>-->
+
+    </p>
+</div>
+
+    </div>
+    <script src="https://unpkg.com/vue@3.4.27/dist/vue.global.js"></script>
+    <script>
+
+        Vue.createApp({
+            data() {
+                return {
+                    CART:1,
+                    products:[] //上架                  
+                }
+            },
+            // methods: {
+            //     // test2(){
+            //     //     console.log(2);//3
+
+            //     // }
+            
+            // },
+            mounted() {//如同叫貨車來(資料庫)卸貨
+                // //畫面渲染完開始執行作用域中的東西
+                // console.log(this.test)//1
+                // console.log(this.test2())//2
+                fetch('https://fakestoreapi.com/products')
+                    .then(res => {
+                        //貨車來了
+                        return res.json();
+                    })
+                    .then(json => {
+                        //卸貨
+                        console.log(json)
+                        this.products=json
+                    })
+            },
+        }).mount("#app")
+    </script>
+</body>
+
+</html>
